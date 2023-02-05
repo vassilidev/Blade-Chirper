@@ -9,7 +9,7 @@ Route::get('/', static function () {
 });
 
 Route::resource('chirps', ChirpController::class)
-    ->only(['index', 'store', 'edit', 'update'])
+    ->except(['create'])
     ->middleware(['auth', 'verified']);
 
 Route::get('/dashboard', static function () {

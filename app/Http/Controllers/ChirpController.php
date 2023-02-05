@@ -7,7 +7,6 @@ use App\Models\Chirp;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class ChirpController extends Controller
 {
@@ -68,6 +67,23 @@ class ChirpController extends Controller
         $this->authorize('update', $chirp);
 
         $chirp->update($request->validated());
+
+        return redirect(route('chirps.index'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Chirp $chirp
+     *
+     * @return RedirectResponse
+     * @throws AuthorizationException
+     */
+    public function destroy(Chirp $chirp): RedirectResponse
+    {
+        $this->authorize('delete', $chirp);
+
+        $chirp->delete();
 
         return redirect(route('chirps.index'));
     }
