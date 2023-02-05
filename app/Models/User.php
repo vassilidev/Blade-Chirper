@@ -44,7 +44,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * @return HasMany
+     * @return HasMany<Chirp>
      */
     public function chirps(): HasMany
     {
